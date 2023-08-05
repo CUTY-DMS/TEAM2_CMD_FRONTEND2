@@ -1,35 +1,58 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-function SignUp() {
-  const navigate = useNavigate();
+var isIdDuplChecked = false;
+var isPwDoubleChecked = false;
 
+function checkDupl() {
+  var mUserId = document.getElementById("userId").value;
+  var url = `/userId?userId=${mUserId}`;
+  url = "https://my-json-server.typicode.com/typicode/demo/posts";
+  axios.get(url).then(function (response) {
+    if (response.status === 200) {
+      alert("사용 가능한 ID 입니다");
+      isIdDuplChecked = true;
+    } else if (response.status === 403) {
+      alert("이미 사용중인 ID 입니다");
+      isIdDuplChecked = false;
+    }
+  });
+}
+
+window.onload = function () {};
+
+function PwCheck(e) {
+  var pwInputValue = document.getElementById("userPassword").value;
+  var pwDoubleInputValue = e.target.value;
+
+  var passwordCheckResult = document.getElementById("passwordCheckResult");
+
+  if (pwInputValue !== pwDoubleInputValue) {
+    passwordCheckResult.innerHTML = "비밀번호가 일치하지 않습니다.";
+    passwordCheckResult.style.color = "red";
+    isPwDoubleChecked = false;
+  } else if (pwInputValue === pwDoubleInputValue) {
+    passwordCheckResult.innerHTML = "비밀번호가 일치합니다.";
+    passwordCheckResult.style.color = "#00c700";
+    isPwDoubleChecked = true;
+  }
+}
+function SignUp() {
   const handleSignupData = () => {
     var mUserId = document.getElementById("userId").value;
     var mUserPassword = document.getElementById("userPassword").value;
-
-    var mState = {
-      userId: mUserId,
-      password: mUserPassword,
-    };
-
     var url = `signup2?userId=${mUserId}&password=${mUserPassword}`;
 
-    window.location.href = url;
-
-    // navigate("http://localhost:3000/signup2", { replace: true });
-    //var result = navigate("/SignUp2", { state: mState });
-    // navigate("/SignUp2", {
-    //   state: {
-    //     userId: mUserId,
-    //     password: mUserPassword,
-    //   },
-    // });
+    if (!isIdDuplChecked) {
+      alert("ID 중복체크를 진행해주세요");
+    } else if (!isPwDoubleChecked) {
+      alert("비밀번호 확인을 진행해주세요");
+    } else {
+      window.location.href = url;
+    }
   };
-
-  var url = "";
 
   return (
     <Body>
@@ -37,7 +60,10 @@ function SignUp() {
         <Title>회원가입</Title>
         <Wrapper>
           <SignTitle>아이디</SignTitle>
-          <Input id="userId" placeholder="아이디를 입력하세요.."></Input>
+          <InputWrapper>
+            <Input id="userId" placeholder="아이디를 입력하세요.."></Input>
+            <Check onClick={checkDupl}>*중복 확인</Check>
+          </InputWrapper>
           <Line></Line>
         </Wrapper>
         <Wrapper>
@@ -51,8 +77,14 @@ function SignUp() {
         </Wrapper>
         <Wrapper>
           <SignTitle>비밀번호 확인</SignTitle>
-          <Input placeholder="비밀번호를 입력하세요.." type="password"></Input>
+          <Input
+            onInput={PwCheck}
+            id="userPasswordCheck"
+            placeholder="비밀번호를 입력하세요.."
+            type="password"
+          ></Input>
           <Line></Line>
+          <PasswordCheck id="passwordCheckResult"></PasswordCheck>
         </Wrapper>
         <Wrapper>
           <SignTitle>가입코드</SignTitle>
@@ -71,37 +103,28 @@ function SignUp() {
     </Body>
   );
 }
-// function sampleApi() {
-//   axios.post("url", {
-//     "userId" : document.getElementById('userId'),
-//     "password" : document.getElementById('userPassword'),
-//     "username" : "String",
-//     "userEmail" : "String",
-//     "grader" : Long,
-//     "schoolClass" : Long,
-//     "number" : Long,
-//     "majorType" : "MajorType",
-//     "club" : "String",
-//     "birth" : "Date"
-//   })
-//   .then(function (response) {
-//       // response
-//   }).catch(function (error) {
-//       // 오류발생시 실행
-//   }).then(function() {
-//       // 항상 실행
-//   });
-
-//   // async await 함수를 사용할 때,
-
-//   try {
-//   const data = await axios.post("url");
-//   } catch {
-//   // 오류 발생시 실행
-//   }
-// }
 
 export default SignUp;
+
+const PasswordCheck = styled.div`
+  margin-top: 5px;
+  font-size: 13px;
+  color: #00c700;
+`;
+
+const Check = styled.button`
+  width: 100px;
+  margin-right: 38px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  color: red;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 const Body = styled.body`
   display: flex;

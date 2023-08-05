@@ -6,51 +6,57 @@ import Plus from "../assets/plus.png";
 
 function NoticeComp() {
   return (
-    <Wrapper>
-      <Header></Header>
-      <Body>
-        <Notice>
-          <WritingBtn to="/NoticeDetail">
-            <PlusBtn src={Plus}></PlusBtn>
-            <Writing>글쓰기</Writing>
-          </WritingBtn>
-          <NoticeWrapper>
-            <Notices>
-              <NoticeContents>
-                <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
-                <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
-              </NoticeContents>
-            </Notices>
-            <Notices>
-              <NoticeContents>
-                <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
-                <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
-              </NoticeContents>
-            </Notices>
-            <Notices>
-              <NoticeContents>
-                <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
-                <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
-              </NoticeContents>
-            </Notices>
-            <Notices>
-              <NoticeContents>
-                <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
-                <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
-              </NoticeContents>
-            </Notices>
-            <Notices>
-              <NoticeContents>
-                <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
-                <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
-              </NoticeContents>
-            </Notices>
-          </NoticeWrapper>
-        </Notice>
-      </Body>
-    </Wrapper>
+    <Background>
+      <Wrapper>
+        <Header></Header>
+        <Body>
+          <Notice>
+            <WritingBtn to="/NoticeDetail">
+              <PlusBtn src={Plus}></PlusBtn>
+              <Writing>글쓰기</Writing>
+            </WritingBtn>
+            <NoticeWrapper>
+              <Notices>
+                <NoticeContents>
+                  <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
+                  <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
+                </NoticeContents>
+              </Notices>
+              <Notices>
+                <NoticeContents>
+                  <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
+                  <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
+                </NoticeContents>
+              </Notices>
+              <Notices>
+                <NoticeContents>
+                  <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
+                  <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
+                </NoticeContents>
+              </Notices>
+              <Notices>
+                <NoticeContents>
+                  <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
+                  <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
+                </NoticeContents>
+              </Notices>
+              <Notices>
+                <NoticeContents>
+                  <NoticeTitle>대충 제목 들어갈 부분</NoticeTitle>
+                  <NoticeInfo>2022.08.22 오전 12:48</NoticeInfo>
+                </NoticeContents>
+              </Notices>
+            </NoticeWrapper>
+          </Notice>
+        </Body>
+      </Wrapper>
+    </Background>
   );
 }
+
+const Background = styled.body`
+  background-color: #ffcf5e;
+`;
 
 const Notice = styled.div`
   display: flex;
@@ -126,5 +132,4 @@ const Body = styled.div`
   height: 89vh;
   background-color: #ffcf5e;
 `;
-
 export default NoticeComp;

@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import ArrowImage from "../assets/downward-arrow.png";
 
 function Signup2() {
   const [searchParams] = useSearchParams();
   var userId = searchParams.get("userId");
-  alert(userId);
-
   return (
     <Body>
       <Container>
@@ -33,7 +31,7 @@ function Signup2() {
             <Option value="">4</Option>
           </Select>
           <Selects></Selects>
-          <Select name="번호">
+          {/* <Select name="번호">
             <Option disabled selected>
               번호
             </Option>
@@ -53,7 +51,9 @@ function Signup2() {
             <Option value="">14</Option>
             <Option value="">15</Option>
             <Option value="">16</Option>
-          </Select>
+          </Select> */}
+          {/* <Selects></Selects> */}
+          <Name placeholder="이름:"></Name>
         </Wrapper>
         <BtnWrapper>
           <SignUpButton to="/">회원가입</SignUpButton>
@@ -66,6 +66,14 @@ function Signup2() {
     </Body>
   );
 }
+
+const Name = styled.input`
+  height: 50px;
+  width: 315px;
+  border-radius: 8px;
+  font-size: 17px;
+  padding-left: 20px;
+`;
 
 const Body = styled.body`
   display: flex;
@@ -94,13 +102,15 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 50px;
-  padding-bottom: 80px;
+  padding-bottom: 50px;
   font-size: 35px;
   font-weight: 1000;
 `;
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-top: 60px;
-  margin-bottom: 185px;
+  margin-bottom: 70px;
 `;
 const Selects = styled.div`
   height: 40px;
@@ -155,7 +165,6 @@ const SignUpButton = styled(Link)`
   font-weight: 700;
   box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 0.2);
   cursor: pointer;
-  margin-top: 30px;
   color: black;
 
   text-decoration: none;
@@ -164,7 +173,7 @@ const SignUpButton = styled(Link)`
 const BtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: -80px;
+  /* margin-top: -80px; */
 `;
 
 export default Signup2;

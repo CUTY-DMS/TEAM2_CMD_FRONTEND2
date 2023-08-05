@@ -10,6 +10,8 @@ import studentInfo from "./components/studentInfo";
 import noticeDetail from "./pages/noticeDetail";
 import studentDetail from "./pages/studentDetail";
 import myPage from "./components/mypage";
+import modal from "./components/modal";
+import header from "./components/header";
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
         <Route path="/NoticeDetail" Component={noticeDetail} />
         <Route path="/StudentDetail" Component={studentDetail} />
         <Route path="/MyPage" Component={myPage} />
+        <Route path="/Modal" Component={modal} />
+        <Route path="/Header" Component={header} />
       </Routes>
     </BrowserRouter>
   );

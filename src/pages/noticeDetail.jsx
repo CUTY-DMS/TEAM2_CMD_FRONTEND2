@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/header";
 import loudSpeaker from "../assets/loudSpeacker.png";
@@ -24,6 +23,7 @@ function NoticeDetail() {
     </Wrapper>
   );
 }
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

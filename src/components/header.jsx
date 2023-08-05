@@ -2,12 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../assets/cmdLogo.png";
-import LeftArrow from "../assets/left-chevron.png";
+import Modal from "./modal";
 
 class Header extends React.Component {
   render() {
     return (
       <HeaderBody>
+        {/* <FullDiv>
+          <Modal></Modal>
+        </FullDiv> */}
+        <Modal></Modal>
         <LogoWrapper to="/Home">
           <CmdLogo src={Logo}></CmdLogo>
         </LogoWrapper>
@@ -19,8 +23,7 @@ class Header extends React.Component {
         <MyPageWrapper>
           <MyPage>
             <TeacherName to="/MyPage">1-2 최수장</TeacherName>
-            <Logout to="/">
-              <LogoutArrow src={LeftArrow}></LogoutArrow>
+            <Logout onClick={showModal}>
               <LogoutBtn>로그아웃</LogoutBtn>
             </Logout>
           </MyPage>
@@ -30,6 +33,16 @@ class Header extends React.Component {
     );
   }
 }
+
+function showModal() {
+  document.getElementById("logoutModal").style.visibility = "visible";
+}
+
+const FullDiv = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+`;
 
 const LogoWrapper = styled(Link)`
   margin-top: 30px;
@@ -65,8 +78,12 @@ const TimeTable = styled(Link)`
   font-size: 20px;
   margin-left: 90px;
   text-decoration: none;
-  color: black;
+  color: #9c9c9c;
   font-weight: bold;
+  &:hover {
+    color: black;
+    transition: 0.4s;
+  }
 `;
 
 const NoticeComp = styled(Link)`
@@ -76,8 +93,12 @@ const NoticeComp = styled(Link)`
   font-size: 20px;
   padding-left: 35px;
   text-decoration: none;
-  color: black;
+  color: #9c9c9c;
   font-weight: bold;
+  &:hover {
+    color: black;
+    transition: 0.4s;
+  }
 `;
 
 const StudentInfo = styled(Link)`
@@ -87,8 +108,12 @@ const StudentInfo = styled(Link)`
   font-size: 20px;
   padding-left: 35px;
   text-decoration: none;
-  color: black;
+  color: #9c9c9c;
   font-weight: bold;
+  &:hover {
+    color: black;
+    transition: 0.4s;
+  }
 `;
 
 const MyPageWrapper = styled.div`
@@ -117,15 +142,11 @@ const Logout = styled(Link)`
   margin-top: 7px;
   text-decoration: none;
 `;
-const LogoutArrow = styled.img`
-  width: 20px;
-  height: 17px;
-  margin-right: 5px;
-`;
 const LogoutBtn = styled.button`
   background-color: white;
   border: none;
   color: #a3a3a3;
+  margin-left: 35px;
   cursor: pointer;
 `;
 const Line = styled.div`
